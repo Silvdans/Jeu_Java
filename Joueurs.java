@@ -25,8 +25,8 @@ public class Joueurs {
         while(i < 4) {
             int indexJoueur = randomiser.nextInt(joueurs.size());
 
-            if(joueurs.get(indexJoueur).getEtat().equals(Etat.EN_ATTENTE)){
-                joueurs.get(indexJoueur).setEtat(Etat.SELECTIONNE);
+            if(joueurs.get(indexJoueur).getEtat().equals(EtatJoueur.EN_ATTENTE)){
+                joueurs.get(indexJoueur).setEtat(EtatJoueur.SELECTIONNE);
                 joueursSelectionnes.add(joueurs.get(indexJoueur));
                 i += 1;
             }

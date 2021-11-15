@@ -6,13 +6,13 @@ public class Joueur {
     private int id;
     private String nom;
     private int score = 0;
-    private Etat etat;
+    private EtatJoueur etat;
 
     public Joueur(String nom){
         this.nom = nom;
         this.id = Joueur.id_to_associate;
         Joueur.id_to_associate+=10;
-        this.etat = Etat.EN_ATTENTE;
+        this.etat = EtatJoueur.EN_ATTENTE;
 
     }
     public void Saisie(){
@@ -52,11 +52,11 @@ public class Joueur {
         this.nom = nom;
     }
 
-    public Etat getEtat() {
+    public EtatJoueur getEtat() {
         return etat;
     }
 
-    public void setEtat(Etat etat) {
+    public void setEtat(EtatJoueur etat) {
         this.etat = etat;
     }
 }

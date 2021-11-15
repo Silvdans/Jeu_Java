@@ -1,6 +1,6 @@
 package com.company;
 
-public enum Etat {
+public enum EtatJoueur {
     SELECTIONNE,
     GAGNANT,
     SUPER_GAGNANT,
