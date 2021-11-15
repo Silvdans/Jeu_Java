@@ -1,4 +1,21 @@
 package com.company;
 
-public class Question {
+public abstract class Question {
+
+    public Question(){
+
+    }
+    public void ajoutQuestion(){
+
+    }
+
+    public void suppresionQuestion(){
+
+    }
+    public int selectionQuestion(){
+        return 0;
+    }
+    public void afficherThemes(){
+        System.out.println("themes");
+    }
 }
