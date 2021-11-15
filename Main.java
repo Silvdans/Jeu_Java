@@ -12,7 +12,7 @@ public class Main {
         joueurs.afficherJoueursSelectionees();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Le Theme"+);
+        System.out.println("Le Theme");
 
     }
 }
