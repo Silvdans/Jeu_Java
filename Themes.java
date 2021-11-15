@@ -1,7 +1,11 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Themes {
 
+    private List<Theme> themes = new ArrayList<Theme>();
     public Themes() {
 
     }
