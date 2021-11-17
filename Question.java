@@ -1,9 +1,11 @@
 package com.company;
 
 public abstract class Question {
-
-    public Question(){
-
+    private String difficultée;
+    private String question;
+    public Question(String difficultée, String question){
+        this.difficultée = difficultée;
+        this.question = question;
     }
     public void ajoutQuestion(){
 
