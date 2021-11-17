@@ -9,7 +9,7 @@ public abstract class Question {
 
     }
 
-    public void suppresionQuestion(){
+    public void suppressionQuestion(){
 
     }
     public int selectionQuestion(){

@@ -9,6 +9,7 @@ public class Themes {
     private List<Theme> themesSelectionnees = new ArrayList<Theme>();
     private static int theme_courant = 0;
     public Themes() {
+
         themes.add(new Theme("1"));
         themes.add(new Theme("2"));
         themes.add(new Theme("3"));
@@ -23,7 +24,7 @@ public class Themes {
 
     public int selectionTheme(){
         theme_courant += 1;
-        if(theme_courant>9)
+        if(theme_courant>10)
         {
             theme_courant = 1;
         }
@@ -36,4 +37,29 @@ public class Themes {
     public String toString(){
         return "test";
     }
+
+    public List<Theme> getThemes() {
+        return themes;
+    }
+
+    public void setThemes(List<Theme> themes) {
+        this.themes = themes;
+    }
+
+    public List<Theme> getThemesSelectionnees() {
+        return themesSelectionnees;
+    }
+
+    public void setThemesSelectionnees(List<Theme> themesSelectionnees) {
+        this.themesSelectionnees = themesSelectionnees;
+    }
+
+    public static int getTheme_courant() {
+        return theme_courant;
+    }
+
+    public static void setTheme_courant(int theme_courant) {
+        Themes.theme_courant = theme_courant;
+    }
+
 }

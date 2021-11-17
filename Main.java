@@ -14,5 +14,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Le Theme");
 
+        for (int i=0; i < 20;i++)
+        {
+
+            System.out.println(themes.getThemes().get(themes.selectionTheme()).getNom());
+        }
+
     }
 }

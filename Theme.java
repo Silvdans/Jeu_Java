@@ -14,4 +14,20 @@ public class Theme {
         this.id = Theme.id_to_associate;
         Theme.id_to_associate+=10;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void addQuestions(Question question) {
+        this.questions.add(question);
+    }
 }
