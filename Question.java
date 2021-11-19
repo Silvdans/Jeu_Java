@@ -12,10 +12,11 @@ public abstract class Question {
     protected List<String> reponse;
     protected String bonneReponse;
 
-    public Question(String difficultée, String question,List<String> reponse){
+    public Question(String difficultée, String question,List<String> reponse,String bonneReponse){
         this.difficultée = difficultée;
         this.question = question;
         this.reponse = reponse;
+        this.bonneReponse = bonneReponse;
     }
     public Question(){
 

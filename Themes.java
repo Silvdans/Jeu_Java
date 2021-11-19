@@ -12,8 +12,13 @@ public class Themes {
     public Themes() {
 
         Theme theme1 = new Theme("Histoire");
-        theme1.addQuestions(new QCM("facile","Paris?","Paris,a,a,a"));
-        themes.add();
+        List<String> reponse = new ArrayList<>();
+        reponse.add("Paris");
+        reponse.add("Manchester");
+        reponse.add("Liverpool");
+        reponse.add("Londres");
+        theme1.addQuestions(new QCM("facile", "Paris ?",reponse,"Paris"));
+
         themes.add(new Theme("Science"));
         themes.add(new Theme("Sport"));
         themes.add(new Theme("Télévision"));

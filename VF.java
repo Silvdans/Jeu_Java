@@ -7,8 +7,8 @@ public class VF extends Question{
     private List<String> reponses;
     private String bonneReponse;
 
-    public VF(String difficultée,String question,Theme theme){
-        super(difficultée,question,theme);
+    public VF(String difficultée,String question,List<String> reponse,String bonneReponse){
+        super(difficultée,question,reponse,bonneReponse);
     }
 
     public VF(){

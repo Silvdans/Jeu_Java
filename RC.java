@@ -6,8 +6,8 @@ public class RC extends Question{
     private List<String> reponse;
     private String bonneReponse;
 
-    public RC(String difficultée,String question,Theme theme){
-        super(difficultée,question,theme);
+    public RC(String difficultée,String question,List<String> reponse,String bonneReponse){
+        super(difficultée,question,reponse,bonneReponse);
     }
 
     public RC(){

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QCM extends Question{
-    public QCM(String difficultée,String question,List<String>reponse){
-        super(difficultée,question,reponse);
+    public QCM(String difficultée,String question,List<String>reponse,String bonneReponse){
+        super(difficultée,question,reponse,bonneReponse);
     }
     public QCM(){
         this.reponse = new ArrayList<String>();
