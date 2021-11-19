@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Themes {
 
     private List<Theme> themes = new ArrayList<Theme>();
@@ -10,25 +11,27 @@ public class Themes {
     private static int theme_courant = 0;
     public Themes() {
 
-        themes.add(new Theme("1"));
-        themes.add(new Theme("2"));
-        themes.add(new Theme("3"));
-        themes.add(new Theme("4"));
-        themes.add(new Theme("5"));
-        themes.add(new Theme("6"));
-        themes.add(new Theme("7"));
-        themes.add(new Theme("8"));
-        themes.add(new Theme("9"));
-        themes.add(new Theme("10"));
+        Theme theme1 = new Theme("Histoire");
+        theme1.addQuestions(new QCM("facile","Paris?","Paris,a,a,a"));
+        themes.add();
+        themes.add(new Theme("Science"));
+        themes.add(new Theme("Sport"));
+        themes.add(new Theme("Télévision"));
+        themes.add(new Theme("Célébrités"));
+        themes.add(new Theme("Philosophie"));
+        themes.add(new Theme("Séries/Films"));
+        themes.add(new Theme("Jeux Vidéos"));
+        themes.add(new Theme("Mythologie"));
+        themes.add(new Theme("Culture Générale"));
     }
 
-    public int selectionTheme(){
+    public String selectionTheme(){
         theme_courant += 1;
         if(theme_courant>10)
         {
             theme_courant = 1;
         }
-        return theme_courant-1;
+        return themes.get(theme_courant-1).getNom();
     }
 
     public int selection5Themes(){

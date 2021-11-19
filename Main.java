@@ -1,24 +1,54 @@
 package com.company;
 
+import javax.rmi.ssl.SslRMIClientSocketFactory;
+import java.security.PrivateKey;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        //Initialisation des Class et variable
 	    Joueurs joueurs = new Joueurs();
         Themes themes = new Themes();
-        //joueurs.afficherJoueurs();
-        joueurs.selectionJoueursParticipants();
-        joueurs.afficherJoueursSelectionees();
-
+        Questions questions = new Questions(themes);
+        String choix;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Le Theme");
 
-        for (int i=0; i < 20;i++)
-        {
+        System.out.println("Voulez-vous jouer ou configurer de nouvelles questions ('Jouer'/'Config')");
+        choix = scanner.nextLine();
 
-            System.out.println(themes.getThemes().get(themes.selectionTheme()).getNom());
+        switch (choix) {
+            case "Jouer":
+                Jeu jeu = new Jeu(joueurs,themes);
+                jeu.déroulerPhase();
+                jeu.déroulerPhase();
+
+                //        for (int i=0; i < 20;i++)
+                //        {
+                //            System.out.println(themes.getThemes().get(themes.selectionTheme()).getNom());
+                //        }
+
+
+                break;
+
+            case "Config":
+                boolean ajoutQuestion = true;
+                while(ajoutQuestion)
+                {
+                    System.out.println("Voulez vous ajouter une question ? O/N");
+                    String reponse = scanner.nextLine();
+                    if (reponse.equals("O")){
+                        questions.ajoutQuestion();
+                    }
+                    else if (reponse.equals("N")) {
+                        ajoutQuestion = false;
+                    }
+                }
+                break;
+            default:
+                throw new IllegalStateException("La valeur entrée n'est pas correcte :" + choix);
         }
+        //Si administrateur
 
-    }
+        }
 }

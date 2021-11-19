@@ -14,6 +14,24 @@ public class Joueurs {
         joueurs.add(new Joueur("Michel"));
         joueurs.add(new Joueur("Jean"));
         joueurs.add(new Joueur("Rachel"));
+        joueurs.add(new Joueur("Yoan"));
+        joueurs.add(new Joueur("Roger"));
+        joueurs.add(new Joueur("Pero"));
+        joueurs.add(new Joueur("Richard"));
+        joueurs.add(new Joueur("Momo"));
+        joueurs.add(new Joueur("Miguel"));
+        joueurs.add(new Joueur("Marie"));
+        joueurs.add(new Joueur("Coline"));
+        joueurs.add(new Joueur("Natsu"));
+        joueurs.add(new Joueur("Orianna"));
+        joueurs.add(new Joueur("Annie"));
+        joueurs.add(new Joueur("Cassiopeia"));
+        joueurs.add(new Joueur("Zerator"));
+        joueurs.add(new Joueur("Sangoku"));
+        joueurs.add(new Joueur("Natacha"));
+
+
+
     }
     public void selectionJoueurRandom(){
 
@@ -41,11 +59,25 @@ public class Joueurs {
         }
     }
     public void afficherJoueursSelectionees(){
-        for(Joueur joueur : joueursSelectionnes){
-            System.out.println(joueur.getId());
-            System.out.println(joueur.getNom());
-            System.out.println(joueur.getScore());
-            System.out.println(joueur.getEtat());
+        for(Joueur joueur : joueursSelectionnes)
+        {
+            System.out.println("Nom du joueur : "+joueur.getNom());
         }
+    }
+
+    public List<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    public void setJoueurs(List<Joueur> joueurs) {
+        this.joueurs = joueurs;
+    }
+
+    public List<Joueur> getJoueursSelectionnes() {
+        return joueursSelectionnes;
+    }
+
+    public void setJoueursSelectionnes(List<Joueur> joueursSelectionnes) {
+        this.joueursSelectionnes = joueursSelectionnes;
     }
 }

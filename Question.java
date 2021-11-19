@@ -1,15 +1,27 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
+
 public abstract class Question {
     private String difficultée;
     private String question;
-    public Question(String difficultée, String question){
+    protected List<String> reponse;
+    protected String bonneReponse;
+
+    public Question(String difficultée, String question,List<String> reponse){
         this.difficultée = difficultée;
         this.question = question;
+        this.reponse = reponse;
     }
-    public void ajoutQuestion(){
+    public Question(){
 
     }
+
+    public abstract void ajouterReponse();
 
     public void suppressionQuestion(){
 
@@ -20,4 +32,23 @@ public abstract class Question {
     public void afficherThemes(){
         System.out.println("themes");
     }
+
+    public String getDifficultée() {
+        return difficultée;
+    }
+
+    public void setDifficultée(String difficultée) {
+        this.difficultée = difficultée;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+
+    public abstract void setReponse(List<String> reponse);
 }
