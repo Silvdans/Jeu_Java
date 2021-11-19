@@ -5,4 +5,5 @@ public interface Phase {
     void selectionerJoueurs();
 
     void déroulerPhase();
+
 }

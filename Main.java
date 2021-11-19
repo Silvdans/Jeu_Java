@@ -10,7 +10,6 @@ public class Main {
         //Initialisation des Class et variable
 	    Joueurs joueurs = new Joueurs();
         Themes themes = new Themes();
-        Questions questions = new Questions(themes);
         String choix;
         Scanner scanner = new Scanner(System.in);
 
@@ -19,9 +18,8 @@ public class Main {
 
         switch (choix) {
             case "Jouer":
-                Jeu jeu = new Jeu(joueurs,themes);
-                jeu.déroulerPhase();
-                jeu.déroulerPhase();
+                Phase phase = new Phase1(joueurs,themes);
+                phase.déroulerPhase();
 
                 //        for (int i=0; i < 20;i++)
                 //        {
@@ -38,7 +36,9 @@ public class Main {
                     System.out.println("Voulez vous ajouter une question ? O/N");
                     String reponse = scanner.nextLine();
                     if (reponse.equals("O")){
-                        questions.ajoutQuestion();
+                        System.out.println("Dans quel thème voulez vous rajouter votre question");
+                        String reptheme = scanner.nextLine();
+                        themes.getThemeByName(reptheme).ajoutQuestion();
                     }
                     else if (reponse.equals("N")) {
                         ajoutQuestion = false;

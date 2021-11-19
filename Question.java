@@ -7,12 +7,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public abstract class Question {
+
+    private static int id_to_associate=1;
+    private  int id;
     private String difficultée;
     private String question;
     protected List<String> reponse;
     protected String bonneReponse;
 
     public Question(String difficultée, String question,List<String> reponse,String bonneReponse){
+        this.id = Question.id_to_associate;
+        Question.id_to_associate += 1;
         this.difficultée = difficultée;
         this.question = question;
         this.reponse = reponse;
@@ -24,12 +29,6 @@ public abstract class Question {
 
     public abstract void ajouterReponse();
 
-    public void suppressionQuestion(){
-
-    }
-    public int selectionQuestion(){
-        return 0;
-    }
     public void afficherThemes(){
         System.out.println("themes");
     }
@@ -50,6 +49,17 @@ public abstract class Question {
         this.question = question;
     }
 
+    public List<String> getReponse() {
+        return reponse;
+    }
+
+    public String getBonneReponse() {
+        return bonneReponse;
+    }
+
+    public void setBonneReponse(String bonneReponse) {
+        this.bonneReponse = bonneReponse;
+    }
 
     public abstract void setReponse(List<String> reponse);
 }

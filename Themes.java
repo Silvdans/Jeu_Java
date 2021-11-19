@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 
@@ -17,8 +18,9 @@ public class Themes {
         reponse.add("Manchester");
         reponse.add("Liverpool");
         reponse.add("Londres");
-        theme1.addQuestions(new QCM("facile", "Paris ?",reponse,"Paris"));
+        theme1.addQuestion(new QCM("facile", "Paris ?",reponse,"1"));
 
+        themes.add(theme1);
         themes.add(new Theme("Science"));
         themes.add(new Theme("Sport"));
         themes.add(new Theme("Télévision"));
@@ -39,6 +41,9 @@ public class Themes {
         return themes.get(theme_courant-1).getNom();
     }
 
+    public String getCurrentTheme(){
+        return themes.get(theme_courant).getNom();
+    }
     public int selection5Themes(){
         return 0;
     }
@@ -48,6 +53,19 @@ public class Themes {
 
     public List<Theme> getThemes() {
         return themes;
+    }
+
+    public Theme getThemeByName(String nomTheme){
+        Theme varTheme = null;
+        for (Theme theme : this.themes){
+            if(theme.getNom().equals(nomTheme)){
+                varTheme = theme;
+            }
+        }
+        if(varTheme == null){
+            throw new InputMismatchException();
+        }
+        return varTheme;
     }
 
     public void setThemes(List<Theme> themes) {

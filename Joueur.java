@@ -59,4 +59,8 @@ public class Joueur {
     public void setEtat(EtatJoueur etat) {
         this.etat = etat;
     }
+
+    public void incrementeScore(){
+        this.score+=1;
+    }
 }
