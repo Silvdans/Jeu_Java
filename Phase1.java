@@ -16,20 +16,7 @@ public class Phase1 implements Phase{
     public void selectionerJoueurs() {
         joueurs.selectionJoueursParticipants();
     }
-    @Override
-    public boolean verifGagnants(int nombreGagnantsAutorises){
-        int nbGagnants = 0;
-        for (Joueur joueur : joueurs.getJoueursSelectionnes()){
-            if (joueur.getEtat().equals(EtatJoueur.GAGNANT)){
-                nbGagnants += 1;
-            }
-        }
-        if(nbGagnants >= nombreGagnantsAutorises)
-        {
-            return true;
-        }
-        return false;
-    }
+
     public void selectionnerJoueurGagnantsRandom(int nbJoueurGagnantsMax){
         int nbJoueursGagnants = 0;
         List<Joueur> joueursNonGagnants = new ArrayList<Joueur>();
@@ -52,14 +39,14 @@ public class Phase1 implements Phase{
     public void déroulerPhase() {
         selectionerJoueurs();
         joueurs.afficherJoueursSelectionees();
-        System.out.println("Le Thème selectionné est : "+themes.getCurrentTheme());
-        String themeactuel = themes.selectionTheme();
-        boolean troisJoueursGagnants = false;
-        boolean touslesjoueursontjoues = false;
+        System.out.println("Le Thème selectionné est : "+themes.getCurrentTheme().getNom());
+        themes.setThemesSelectionnees(this);
+        boolean touslesjoueursontjoues;
         int nbJoueurActuel = 0;
-        while(!verifGagnants(3))
+        while(!joueurs.verifGagnants(3))
         {
-            Question question = themes.getThemeByName(themeactuel).selectionQuestion(this);
+            Question question = themes.getThemeByName(themes.getCurrentTheme().getNom()).selectionQuestion(this);
+            themes.setDernierTheme(themes.getCurrentTheme().getId());
             touslesjoueursontjoues = false;
             if(question == null)
             {
@@ -71,7 +58,6 @@ public class Phase1 implements Phase{
             {
                 Joueur joueurActuel = joueurs.getJoueursSelectionnes().get(nbJoueurActuel);
                 System.out.println("C'est au joueur "+joueurActuel.getNom() +" de répondre à la question suivante : ");
-                System.out.println(question.getQuestion());
                 if(question instanceof QCM) {
                     System.out.println("Vous avez le choix entre ces 4 options :");
                     int i = 1;

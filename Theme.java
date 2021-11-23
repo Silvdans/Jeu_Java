@@ -117,4 +117,8 @@ public class Theme {
     public void addQuestion(Question question) {
         this.questions.add(question);
     }
+
+    public int getId() {
+        return id;
+    }
 }

@@ -7,6 +7,7 @@ public class Joueur {
     private String nom;
     private int score = 0;
     private EtatJoueur etat;
+    private Theme themeChoisi;
 
     public Joueur(String nom){
         this.nom = nom;
@@ -62,5 +63,12 @@ public class Joueur {
 
     public void incrementeScore(int points){
         this.score+=points;
+    }
+    public Theme getThemeChoisi() {
+        return themeChoisi;
+    }
+
+    public void setThemeChoisi(Theme themeChoisi) {
+        this.themeChoisi = themeChoisi;
     }
 }

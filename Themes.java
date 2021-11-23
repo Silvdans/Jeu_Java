@@ -10,6 +10,8 @@ public class Themes {
     private List<Theme> themes = new ArrayList<Theme>();
     private List<Theme> themesSelectionnees = new ArrayList<Theme>();
     private static int theme_courant = 0;
+
+    private int dernierTheme;
     public Themes() {
 
         Theme theme1 = new Theme("Histoire");
@@ -25,33 +27,70 @@ public class Themes {
         reponse1.add("Wejdene");
         reponse1.add("Arouf gangsta");
         theme1.addQuestion(new QCM("facile","Roi soleil ?",reponse1,"1"));
-
         themes.add(theme1);
-        themes.add(new Theme("Science"));
-        themes.add(new Theme("Sport"));
-        themes.add(new Theme("Télévision"));
-        themes.add(new Theme("Célébrités"));
-        themes.add(new Theme("Philosophie"));
-        themes.add(new Theme("Séries/Films"));
-        themes.add(new Theme("Jeux Vidéos"));
-        themes.add(new Theme("Mythologie"));
-        themes.add(new Theme("Culture Générale"));
+
+        Theme theme2 = new Theme("Science");
+        List<String> reponse2 = new ArrayList<String>();
+        reponse2.add("Albert Einstein");
+        reponse2.add("Isaac Newton");
+        reponse2.add("Tupac");
+        reponse2.add("Marie Curie");
+        theme2.addQuestion(new QCM("moyen","Qui a élaboré la loi de la gravitation universelle ?",reponse2,"2"));
+        List<String> reponse3 = new ArrayList<String>();
+        reponse3.add("H2O");
+        reponse3.add("CH3");
+        reponse3.add("C17H21NO4");
+        reponse3.add("NH3");
+        theme2.addQuestion(new QCM("moyen","Quelle est la formule chimique de l'ammoniac ?",reponse3,"4"));
+        themes.add(theme2);
+
+        Theme theme3 = new Theme("Sport");
+        List<String> reponse4 = new ArrayList<String>();
+        List<String> reponse5 = new ArrayList<String>();
+        themes.add(theme3);
+
+        Theme theme4 = new Theme("Télévision");
+        List<String> reponse6 = new ArrayList<String>();
+        List<String> reponse7 = new ArrayList<String>();
+        themes.add(theme4);
+
+        Theme theme5 = new Theme("Célébrités");
+        List<String> reponse8 = new ArrayList<String>();
+        List<String> reponse9 = new ArrayList<String>();
+        themes.add(theme5);
+
+        Theme theme6 = new Theme("Philosophie");
+        List<String> reponse10 = new ArrayList<String>();
+        List<String> reponse11 = new ArrayList<String>();
+        themes.add(theme6);
+
+        Theme theme7 = new Theme("Séries/Films");
+        List<String> reponse12 = new ArrayList<String>();
+        List<String> reponse13 = new ArrayList<String>();
+        themes.add(theme7);
+
+        Theme theme8 = new Theme("Jeux Vidéos");
+        List<String> reponse14 = new ArrayList<String>();
+        List<String> reponse15 = new ArrayList<String>();
+        themes.add(theme8);
+
+        Theme theme9 = new Theme("Mythologie");
+        List<String> reponse16 = new ArrayList<String>();
+        List<String> reponse17 = new ArrayList<String>();
+        themes.add(theme9);
+
+        Theme theme10 = new Theme("Culture Générale");
+        List<String> reponse18 = new ArrayList<String>();
+        List<String> reponse19 = new ArrayList<String>();
+        themes.add(theme10);
     }
 
-    public String selectionTheme(){
+    public void changerTheme(){
         theme_courant += 1;
-        if(theme_courant>10)
-        {
-            theme_courant = 1;
-        }
-        return themes.get(theme_courant-1).getNom();
     }
 
-    public String getCurrentTheme(){
-        return themes.get(theme_courant).getNom();
-    }
-    public int selection5Themes(){
-        return 0;
+    public Theme getCurrentTheme(){
+        return themes.get(theme_courant);
     }
     public String toString(){
         return "test";
@@ -63,7 +102,7 @@ public class Themes {
 
     public Theme getThemeByName(String nomTheme){
         Theme varTheme = null;
-        for (Theme theme : this.themes){
+        for (Theme theme : this.themesSelectionnees){
             if(theme.getNom().equals(nomTheme)){
                 varTheme = theme;
             }
@@ -82,16 +121,46 @@ public class Themes {
         return themesSelectionnees;
     }
 
-    public void setThemesSelectionnees(List<Theme> themesSelectionnees) {
-        this.themesSelectionnees = themesSelectionnees;
-    }
+    public void setThemesSelectionnees(Phase phase) {
+        if(phase instanceof Phase1){
+            this.themesSelectionnees.addAll(themes);
+        }
+        if(phase instanceof  Phase2){
+            this.themesSelectionnees.clear();
+            List<Theme> doublons = new ArrayList<Theme>();
+            int i = 0;
+            while(i < 6)
+            {
+                int random = (int)(Math.random() * (themes.size()));
 
+                if(!(themes.get(random).getId() == dernierTheme) && !(doublons.contains(themes.get(random))))
+                {
+                    this.themesSelectionnees.add(this.themes.get(random));
+                    doublons.add(this.themes.get(random));
+                    i++;
+                }
+
+            }
+        }
+    }
+    public void afficherThemesSelectionnes(){
+        for (Theme theme : this.themesSelectionnees){
+            System.out.println(theme.getNom());
+        }
+    }
     public static int getTheme_courant() {
         return theme_courant;
     }
 
     public static void setTheme_courant(int theme_courant) {
         Themes.theme_courant = theme_courant;
+    }
+    public int getDernierTheme() {
+        return dernierTheme;
+    }
+
+    public void setDernierTheme(int dernierTheme) {
+        this.dernierTheme = dernierTheme;
     }
 
 }

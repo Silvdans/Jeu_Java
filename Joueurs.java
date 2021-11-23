@@ -30,8 +30,6 @@ public class Joueurs {
         joueurs.add(new Joueur("Sangoku"));
         joueurs.add(new Joueur("Natacha"));
 
-
-
     }
     public void selectionJoueurRandom(){
 
@@ -56,6 +54,25 @@ public class Joueurs {
                 i += 1;
             }
         }
+    }
+    public boolean verifGagnants(int nombreGagnantsAutorises){
+        int nbGagnants = 0;
+        for (Joueur joueur : this.getJoueursSelectionnes()){
+            if (joueur.getEtat().equals(EtatJoueur.GAGNANT)){
+                nbGagnants += 1;
+            }
+        }
+        if(nbGagnants >= nombreGagnantsAutorises)
+        {
+            for (Joueur joueur : this.getJoueursSelectionnes())
+            {
+                if(!(joueur.getEtat().equals(EtatJoueur.GAGNANT))){
+                    joueur.setEtat(EtatJoueur.ELIMINE);
+                }
+            }
+            return true;
+        }
+        return false;
     }
     public void afficherJoueurs(){
         for(Joueur joueur : joueurs){
