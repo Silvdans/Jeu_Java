@@ -60,7 +60,7 @@ public class Joueur {
         this.etat = etat;
     }
 
-    public void incrementeScore(){
-        this.score+=1;
+    public void incrementeScore(int points){
+        this.score+=points;
     }
 }

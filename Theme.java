@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.File;
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -36,13 +37,21 @@ public class Theme {
         }
         List<Question> questionsCourantes = new ArrayList<Question>();
         for (Question question : this.questions){
-            if (question.getDifficultée().equals(difficultee)){
+            if (question.getDifficultée().equals(difficultee) && question.getEtat().equals(EtatQuestion.EN_ATTENTE)){
                 questionsCourantes.add(question);
             }
         }
-        int random = (int)(Math.random() * (questionsCourantes.size()));
+        if(questionsCourantes.size() == 0)
+        {
+            return null;
+        }
+        else{
+            int random = (int)(Math.random() * (questionsCourantes.size()));
+            Question question = questionsCourantes.get(random);
+            question.setEtat(EtatQuestion.UTILISEE);
+            return question;
+        }
 
-        return questionsCourantes.get(random);
 
 
     }

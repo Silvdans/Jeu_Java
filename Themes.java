@@ -19,6 +19,12 @@ public class Themes {
         reponse.add("Liverpool");
         reponse.add("Londres");
         theme1.addQuestion(new QCM("facile", "Paris ?",reponse,"1"));
+        List<String> reponse1 = new ArrayList<>();
+        reponse1.add("Louis XIV");
+        reponse1.add("KobaLaD");
+        reponse1.add("Wejdene");
+        reponse1.add("Arouf gangsta");
+        theme1.addQuestion(new QCM("facile","Roi soleil ?",reponse1,"1"));
 
         themes.add(theme1);
         themes.add(new Theme("Science"));

@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Phase1 implements Phase{
@@ -14,7 +16,38 @@ public class Phase1 implements Phase{
     public void selectionerJoueurs() {
         joueurs.selectionJoueursParticipants();
     }
-
+    @Override
+    public boolean verifGagnants(int nombreGagnantsAutorises){
+        int nbGagnants = 0;
+        for (Joueur joueur : joueurs.getJoueursSelectionnes()){
+            if (joueur.getEtat().equals(EtatJoueur.GAGNANT)){
+                nbGagnants += 1;
+            }
+        }
+        if(nbGagnants >= nombreGagnantsAutorises)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void selectionnerJoueurGagnantsRandom(int nbJoueurGagnantsMax){
+        int nbJoueursGagnants = 0;
+        List<Joueur> joueursNonGagnants = new ArrayList<Joueur>();
+        for(Joueur joueur : joueurs.getJoueursSelectionnes()){
+            if(joueur.getEtat().equals(EtatJoueur.GAGNANT)){
+                nbJoueursGagnants += 1;
+            }
+            if (joueur.getEtat().equals(EtatJoueur.SELECTIONNE))
+            {
+                joueursNonGagnants.add(joueur);
+            }
+        }
+        while (nbJoueursGagnants < nbJoueurGagnantsMax){
+            int random = (int)(Math.random() * (joueursNonGagnants.size()));
+            joueursNonGagnants.get(random).setEtat(EtatJoueur.GAGNANT);
+            nbJoueursGagnants +=1;
+        }
+    }
     @Override
     public void déroulerPhase() {
         selectionerJoueurs();
@@ -24,9 +57,15 @@ public class Phase1 implements Phase{
         boolean troisJoueursGagnants = false;
         boolean touslesjoueursontjoues = false;
         int nbJoueurActuel = 0;
-        while(!troisJoueursGagnants)
+        while(!verifGagnants(3))
         {
             Question question = themes.getThemeByName(themeactuel).selectionQuestion(this);
+            touslesjoueursontjoues = false;
+            if(question == null)
+            {
+                selectionnerJoueurGagnantsRandom(3);
+                touslesjoueursontjoues = true;
+            }
 
             while(!touslesjoueursontjoues)
             {
@@ -50,7 +89,7 @@ public class Phase1 implements Phase{
                 Scanner scanner = new Scanner(System.in);
                 String reponse = scanner.nextLine();
                 if(reponse.equals(question.getBonneReponse())){
-                    joueurActuel.incrementeScore();
+                    joueurActuel.incrementeScore(2);
 
                     System.out.println("Félicitation c'est la bonne réponse, votre score a augmenté de 1 point");
                     System.out.println("Votre Score est maintenant de : "+joueurActuel.getScore()+" points");
@@ -63,6 +102,7 @@ public class Phase1 implements Phase{
                 nbJoueurActuel+=1;
                 if(nbJoueurActuel > 3)
                 {
+                    nbJoueurActuel = 0;
                     touslesjoueursontjoues = true;
                 }
                 for(int i =0;i < 20;i++)
@@ -70,12 +110,7 @@ public class Phase1 implements Phase{
                     System.out.println("----------------------------------------------");
                 }
             }
-            //A continuer, pour l'instant 1 seul round d'implémenté
-            troisJoueursGagnants = true;
         }
-
-
-
-
+        this.joueurs.afficherJoueursGagnants();
     }
 }

@@ -36,6 +36,13 @@ public class Joueurs {
     public void selectionJoueurRandom(){
 
     }
+    public void afficherJoueursGagnants(){
+        for(Joueur joueur : joueursSelectionnes){
+            if(joueur.getEtat().equals(EtatJoueur.GAGNANT)){
+                System.out.println(joueur.getNom()+" est qualifié !");
+            }
+        }
+    }
     public void selectionJoueursParticipants(){
         Random randomiser = new Random();
         List<Integer> doublons = new ArrayList<Integer>();

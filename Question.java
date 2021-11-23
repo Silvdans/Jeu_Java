@@ -12,8 +12,10 @@ public abstract class Question {
     private  int id;
     private String difficultée;
     private String question;
+    private EtatQuestion etat;
     protected List<String> reponse;
     protected String bonneReponse;
+
 
     public Question(String difficultée, String question,List<String> reponse,String bonneReponse){
         this.id = Question.id_to_associate;
@@ -22,6 +24,7 @@ public abstract class Question {
         this.question = question;
         this.reponse = reponse;
         this.bonneReponse = bonneReponse;
+        this.etat = EtatQuestion.EN_ATTENTE;
     }
     public Question(){
 
@@ -62,4 +65,12 @@ public abstract class Question {
     }
 
     public abstract void setReponse(List<String> reponse);
+
+    public EtatQuestion getEtat() {
+        return etat;
+    }
+
+    public void setEtat(EtatQuestion etat) {
+        this.etat = etat;
+    }
 }

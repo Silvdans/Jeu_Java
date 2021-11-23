@@ -6,4 +6,5 @@ public interface Phase {
 
     void déroulerPhase();
 
+    boolean verifGagnants(int nbGagnantsAutorises);
 }
