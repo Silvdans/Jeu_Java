@@ -29,7 +29,21 @@ public abstract class Question {
     public Question(){
 
     }
+    public void verifierReponse(Joueur joueurActuel){
+        Scanner scanner = new Scanner(System.in);
+        String reponse = scanner.nextLine();
+        if(reponse.equals(this.getBonneReponse())){
+            joueurActuel.incrementeScore(2);
 
+            System.out.println("Félicitation c'est la bonne réponse, votre score a augmenté de 2 point");
+            System.out.println("Votre Score est maintenant de : "+joueurActuel.getScore()+" points");
+        }
+        else{
+            System.out.println("Dommage ce n'est pas la bonne réponse ! ");
+            System.out.println("La bonne réponse était : "+this.getBonneReponse());
+            System.out.println("Votre Score est toujours de : "+joueurActuel.getScore()+" points");
+        }
+    }
     public abstract void ajouterReponse();
 
     public void afficherThemes(){

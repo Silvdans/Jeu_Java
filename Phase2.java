@@ -17,10 +17,11 @@ public class Phase2 implements Phase{
         joueurs.resetEtats();
     }
     public void selectionnerJoueurGagnantsRandom(int nbJoueurGagnantsMax) {
+        System.out.println("1");
         int nbJoueursGagnants = 0;
         List<Joueur> joueursNonGagnants = new ArrayList<Joueur>();
         for (Joueur joueur : joueurs.getJoueursSelectionnes()) {
-            if (joueur.getEtat().equals(EtatJoueur.GAGNANT)) {
+            if (joueur.getEtat().equals(EtatJoueur.GAGNANT)) {;
                 nbJoueursGagnants += 1;
             }
             if (joueur.getEtat().equals(EtatJoueur.SELECTIONNE)) {
@@ -30,6 +31,7 @@ public class Phase2 implements Phase{
         while (nbJoueursGagnants < nbJoueurGagnantsMax) {
             int random = (int) (Math.random() * (joueursNonGagnants.size()));
             joueursNonGagnants.get(random).setEtat(EtatJoueur.GAGNANT);
+            System.out.println(joueursNonGagnants.get(random).getEtat().toString());
             nbJoueursGagnants += 1;
         }
         joueursNonGagnants.clear();
@@ -67,19 +69,7 @@ public class Phase2 implements Phase{
                     System.out.println("C'est au joueur "+joueurActuel.getNom() +" de répondre à la question suivante : ");
                     System.out.println(question.getQuestion());
                     question.demanderReponse();
-
-                    String reponse = scanner.nextLine();
-                    if(reponse.equals(question.getBonneReponse())){
-                        joueurActuel.incrementeScore(2);
-
-                        System.out.println("Félicitation c'est la bonne réponse, votre score a augmenté de 1 point");
-                        System.out.println("Votre Score est maintenant de : "+joueurActuel.getScore()+" points");
-                    }
-                    else{
-                        System.out.println("Dommage ce n'est pas la bonne réponse ! ");
-                        System.out.println("La bonne réponse était : "+question.getBonneReponse());
-                        System.out.println("Votre Score est toujours de : "+joueurActuel.getScore()+" points");
-                    }
+                    question.verifierReponse(joueurActuel);
                     nbJoueurActuel+=1;
                     if(nbJoueurActuel > 2)
                     {
@@ -91,10 +81,9 @@ public class Phase2 implements Phase{
                         System.out.println("----------------------------------------------");
                     }
                 }
-
             }
-            this.joueurs.afficherJoueursGagnants();
         }
+        this.joueurs.afficherJoueursGagnants();
     }
 }
 

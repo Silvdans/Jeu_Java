@@ -60,19 +60,7 @@ public class Phase1 implements Phase{
                 System.out.println("C'est au joueur "+joueurActuel.getNom() +" de répondre à la question suivante : ");
                 System.out.println(question.getQuestion());
                 question.demanderReponse();
-                Scanner scanner = new Scanner(System.in);
-                String reponse = scanner.nextLine();
-                if(reponse.equals(question.getBonneReponse())){
-                    joueurActuel.incrementeScore(2);
-
-                    System.out.println("Félicitation c'est la bonne réponse, votre score a augmenté de 1 point");
-                    System.out.println("Votre Score est maintenant de : "+joueurActuel.getScore()+" points");
-                }
-                else{
-                    System.out.println("Dommage ce n'est pas la bonne réponse ! ");
-                    System.out.println("La bonne réponse était : "+question.getBonneReponse());
-                    System.out.println("Votre Score est toujours de : "+joueurActuel.getScore()+" points");
-                }
+                question.verifierReponse(joueurActuel);
                 nbJoueurActuel+=1;
                 if(nbJoueurActuel > 3)
                 {
