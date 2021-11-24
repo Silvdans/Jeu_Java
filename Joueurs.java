@@ -34,6 +34,24 @@ public class Joueurs {
     public void selectionJoueurRandom(){
 
     }
+    public void selectionnerJoueurGagnantsRandom(int nbJoueurGagnantsMax){
+        int nbJoueursGagnants = 0;
+        List<Joueur> joueursNonGagnants = new ArrayList<Joueur>();
+        for(Joueur joueur : this.getJoueursSelectionnes()){
+            if(joueur.getEtat().equals(EtatJoueur.GAGNANT)){
+                nbJoueursGagnants += 1;
+            }
+            if (joueur.getEtat().equals(EtatJoueur.SELECTIONNE))
+            {
+                joueursNonGagnants.add(joueur);
+            }
+        }
+        while (nbJoueursGagnants < nbJoueurGagnantsMax){
+            int random = (int)(Math.random() * (joueursNonGagnants.size()));
+            joueursNonGagnants.get(random).setEtat(EtatJoueur.GAGNANT);
+            nbJoueursGagnants +=1;
+        }
+    }
     public void resetEtats(){
         for (Joueur joueur : this.joueursSelectionnes){
             joueur.setEtat(EtatJoueur.SELECTIONNE);

@@ -17,24 +17,6 @@ public class Phase1 implements Phase{
         joueurs.selectionJoueursParticipants();
     }
 
-    public void selectionnerJoueurGagnantsRandom(int nbJoueurGagnantsMax){
-        int nbJoueursGagnants = 0;
-        List<Joueur> joueursNonGagnants = new ArrayList<Joueur>();
-        for(Joueur joueur : joueurs.getJoueursSelectionnes()){
-            if(joueur.getEtat().equals(EtatJoueur.GAGNANT)){
-                nbJoueursGagnants += 1;
-            }
-            if (joueur.getEtat().equals(EtatJoueur.SELECTIONNE))
-            {
-                joueursNonGagnants.add(joueur);
-            }
-        }
-        while (nbJoueursGagnants < nbJoueurGagnantsMax){
-            int random = (int)(Math.random() * (joueursNonGagnants.size()));
-            joueursNonGagnants.get(random).setEtat(EtatJoueur.GAGNANT);
-            nbJoueursGagnants +=1;
-        }
-    }
     @Override
     public void déroulerPhase() {
         selectionerJoueurs();
@@ -50,7 +32,7 @@ public class Phase1 implements Phase{
             touslesjoueursontjoues = false;
             if(question == null)
             {
-                selectionnerJoueurGagnantsRandom(3);
+                joueurs.selectionnerJoueurGagnantsRandom(3);
                 touslesjoueursontjoues = true;
             }
 
@@ -67,7 +49,7 @@ public class Phase1 implements Phase{
                     nbJoueurActuel = 0;
                     touslesjoueursontjoues = true;
                 }
-                for(int i =0;i < 20;i++)
+                for(int i =0;i < 5;i++)
                 {
                     System.out.println("----------------------------------------------");
                 }

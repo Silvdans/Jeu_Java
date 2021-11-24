@@ -21,6 +21,7 @@ public class Main {
                 case "Jouer":
                     Phase phase = new Phase1(joueurs, themes);
                     phase.déroulerPhase();
+
                     Phase phase2 = new Phase2(joueurs, themes);
                     phase2.selectionerJoueurs();
                     phase2.déroulerPhase();

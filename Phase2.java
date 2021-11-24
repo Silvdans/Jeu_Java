@@ -16,26 +16,6 @@ public class Phase2 implements Phase{
         joueurs.getJoueursSelectionnes().removeIf(joueur -> joueur.getEtat().equals(EtatJoueur.ELIMINE));
         joueurs.resetEtats();
     }
-    public void selectionnerJoueurGagnantsRandom(int nbJoueurGagnantsMax) {
-        System.out.println("1");
-        int nbJoueursGagnants = 0;
-        List<Joueur> joueursNonGagnants = new ArrayList<Joueur>();
-        for (Joueur joueur : joueurs.getJoueursSelectionnes()) {
-            if (joueur.getEtat().equals(EtatJoueur.GAGNANT)) {;
-                nbJoueursGagnants += 1;
-            }
-            if (joueur.getEtat().equals(EtatJoueur.SELECTIONNE)) {
-                joueursNonGagnants.add(joueur);
-            }
-        }
-        while (nbJoueursGagnants < nbJoueurGagnantsMax) {
-            int random = (int) (Math.random() * (joueursNonGagnants.size()));
-            joueursNonGagnants.get(random).setEtat(EtatJoueur.GAGNANT);
-            System.out.println(joueursNonGagnants.get(random).getEtat().toString());
-            nbJoueursGagnants += 1;
-        }
-        joueursNonGagnants.clear();
-    }
     @Override
     public void déroulerPhase(){
         themes.setThemesSelectionnees(this);
@@ -53,17 +33,17 @@ public class Phase2 implements Phase{
             themes.getThemesSelectionnees().remove(themes.getThemeByName(theme));
         }
         int nbJoueurActuel = 0;
-        boolean touslesjoueursontjoues;
+        boolean touslesjoueursontpasjoues = true;
         while(!(joueurs.verifGagnants(2))) {
-            touslesjoueursontjoues = false;
-            while(!touslesjoueursontjoues){
+            touslesjoueursontpasjoues = true;
+            while(touslesjoueursontpasjoues){
 
                 Joueur joueurActuel = joueurs.getJoueursSelectionnes().get(nbJoueurActuel);
                 Question question = joueurActuel.getThemesChoisis().get(0).selectionQuestion(this);
                 if(question == null)
                 {
-                    selectionnerJoueurGagnantsRandom(2);
-                    touslesjoueursontjoues = true;
+                    joueurs.selectionnerJoueurGagnantsRandom(2);
+                    touslesjoueursontpasjoues = false;
                 }
                 else{
                     System.out.println("C'est au joueur "+joueurActuel.getNom() +" de répondre à la question suivante : ");
@@ -74,9 +54,9 @@ public class Phase2 implements Phase{
                     if(nbJoueurActuel > 2)
                     {
                         nbJoueurActuel = 0;
-                        touslesjoueursontjoues = true;
+                        touslesjoueursontpasjoues = false;
                     }
-                    for(int i =0;i < 20;i++)
+                    for(int i =0;i < 5;i++)
                     {
                         System.out.println("----------------------------------------------");
                     }
