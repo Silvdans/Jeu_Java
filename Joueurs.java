@@ -34,6 +34,11 @@ public class Joueurs {
     public void selectionJoueurRandom(){
 
     }
+    public void resetEtats(){
+        for (Joueur joueur : this.joueursSelectionnes){
+            joueur.setEtat(EtatJoueur.SELECTIONNE);
+        }
+    }
     public void afficherJoueursGagnants(){
         for(Joueur joueur : joueursSelectionnes){
             if(joueur.getEtat().equals(EtatJoueur.GAGNANT)){

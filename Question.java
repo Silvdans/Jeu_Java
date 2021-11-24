@@ -17,7 +17,7 @@ public abstract class Question {
     protected String bonneReponse;
 
 
-    public Question(String difficultée, String question,List<String> reponse,String bonneReponse){
+    public Question(String difficultée, String question,String bonneReponse){
         this.id = Question.id_to_associate;
         Question.id_to_associate += 1;
         this.difficultée = difficultée;
@@ -64,7 +64,7 @@ public abstract class Question {
         this.bonneReponse = bonneReponse;
     }
 
-    public abstract void setReponse(List<String> reponse);
+    public abstract void demanderReponse();
 
     public EtatQuestion getEtat() {
         return etat;

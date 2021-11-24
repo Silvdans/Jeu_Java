@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Joueur {
 
     private static int id_to_associate=100;
@@ -7,7 +10,8 @@ public class Joueur {
     private String nom;
     private int score = 0;
     private EtatJoueur etat;
-    private Theme themeChoisi;
+    private List<Theme> themesChoisis = new ArrayList<Theme>();
+    private Theme themeCourant;
 
     public Joueur(String nom){
         this.nom = nom;
@@ -64,11 +68,12 @@ public class Joueur {
     public void incrementeScore(int points){
         this.score+=points;
     }
-    public Theme getThemeChoisi() {
-        return themeChoisi;
+
+    public List<Theme> getThemesChoisis() {
+        return themesChoisis;
     }
 
-    public void setThemeChoisi(Theme themeChoisi) {
-        this.themeChoisi = themeChoisi;
+    public void addThemesChoisis(Theme theme) {
+        this.themesChoisis.add(theme);
     }
 }

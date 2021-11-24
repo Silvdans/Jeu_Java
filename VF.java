@@ -1,36 +1,27 @@
 package com.company;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class VF extends Question{
 
-    private List<String> reponses;
-    private String bonneReponse;
-
-    public VF(String difficultée,String question,List<String> reponse,String bonneReponse){
-        super(difficultée,question,reponse,bonneReponse);
+    public VF(String difficultée,String question,String bonneReponse){
+        super(difficultée,question,bonneReponse);
     }
 
     public VF(){
 
     }
     public void ajouterReponse(){
-
-    }
-    public List<String> getReponses() {
-        return reponses;
-    }
-
-    @Override
-    public void setReponse(List<String> reponses) {
-        this.reponses = reponses;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("La réponse est elle Vraie ou Fausse ?(V ou F)");
+        String rep = scanner.nextLine().toLowerCase(Locale.ROOT);
+        this.bonneReponse = rep;
     }
 
-    public String getBonneReponse() {
-        return bonneReponse;
+    public void demanderReponse(){
+        System.out.println("Vrai ou Faux ? (Rentrez V ou F)");
     }
 
-    public void setBonneReponse(String bonneReponse) {
-        this.bonneReponse = bonneReponse;
-    }
 }

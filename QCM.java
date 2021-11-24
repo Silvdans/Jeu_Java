@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QCM extends Question{
-    public QCM(String difficultée,String question,List<String>reponse,String bonneReponse){
-        super(difficultée,question,reponse,bonneReponse);
+    private List<String> reponse;
+    public QCM(String difficultée,String question,String bonneReponse,List<String> reponse){
+        super(difficultée,question,bonneReponse);
+        this.reponse = reponse;
     }
     public QCM(){
         this.reponse = new ArrayList<String>();
@@ -38,21 +40,17 @@ public class QCM extends Question{
         }
 
     }
+    public void demanderReponse(){
+        System.out.println("Vous avez le choix entre ces 4 options :");
+        int i = 1;
+        for (String reponse : this.reponse){
+            System.out.println("Réponse N° "+i+" : "+reponse);
+            i++;
+        }
+    }
 
     public List<String> getReponse() {
         return reponse;
     }
 
-    @Override
-    public void setReponse(List<String> reponse) {
-        this.reponse = reponse;
-    }
-
-    public String getBonneReponse() {
-        return bonneReponse;
-    }
-
-    public void setBonneReponse(String bonneReponse) {
-        this.bonneReponse = bonneReponse;
-    }
 }

@@ -9,6 +9,8 @@ public class Themes {
 
     private List<Theme> themes = new ArrayList<Theme>();
     private List<Theme> themesSelectionnees = new ArrayList<Theme>();
+    private List<Theme> themesConsommés = new ArrayList<Theme>();
+
     private static int theme_courant = 0;
 
     private int dernierTheme;
@@ -20,13 +22,13 @@ public class Themes {
         reponse.add("Manchester");
         reponse.add("Liverpool");
         reponse.add("Londres");
-        theme1.addQuestion(new QCM("facile", "Paris ?",reponse,"1"));
+        theme1.addQuestion(new QCM("facile", "Paris ?","1",reponse));
         List<String> reponse1 = new ArrayList<>();
         reponse1.add("Louis XIV");
         reponse1.add("KobaLaD");
         reponse1.add("Wejdene");
         reponse1.add("Arouf gangsta");
-        theme1.addQuestion(new QCM("facile","Roi soleil ?",reponse1,"1"));
+        theme1.addQuestion(new QCM("facile","Roi soleil ?","1",reponse1));
         themes.add(theme1);
 
         Theme theme2 = new Theme("Science");
@@ -35,28 +37,26 @@ public class Themes {
         reponse2.add("Isaac Newton");
         reponse2.add("Tupac");
         reponse2.add("Marie Curie");
-        theme2.addQuestion(new QCM("moyen","Qui a élaboré la loi de la gravitation universelle ?",reponse2,"2"));
+        theme2.addQuestion(new QCM("moyen","Qui a élaboré la loi de la gravitation universelle ?","2",reponse2));
         List<String> reponse3 = new ArrayList<String>();
         reponse3.add("H2O");
         reponse3.add("CH3");
         reponse3.add("C17H21NO4");
         reponse3.add("NH3");
-        theme2.addQuestion(new QCM("moyen","Quelle est la formule chimique de l'ammoniac ?",reponse3,"4"));
+        theme2.addQuestion(new QCM("moyen","Quelle est la formule chimique de l'ammoniac ?","4",reponse3));
         themes.add(theme2);
 
         Theme theme3 = new Theme("Sport");
-        List<String> reponse4 = new ArrayList<String>();
-        List<String> reponse5 = new ArrayList<String>();
+        theme3.addQuestion(new RC("moyen","Quel pays a gagné la coupe du monde de 1998","france"));
+        theme3.addQuestion(new VF("moyen","Un français a t'il battu le record de Renaud Lavillenie au saut à la perche ?","f"));
         themes.add(theme3);
 
         Theme theme4 = new Theme("Télévision");
-        List<String> reponse6 = new ArrayList<String>();
-        List<String> reponse7 = new ArrayList<String>();
+        theme4.addQuestion(new RC("moyen","En quelle année a eu lieu la première édition de la star académie ?","2001"));
+        theme4.addQuestion(new VF("moyen","La première télévision a été inventée en 1925","v"));
         themes.add(theme4);
 
         Theme theme5 = new Theme("Célébrités");
-        List<String> reponse8 = new ArrayList<String>();
-        List<String> reponse9 = new ArrayList<String>();
         themes.add(theme5);
 
         Theme theme6 = new Theme("Philosophie");
@@ -163,4 +163,11 @@ public class Themes {
         this.dernierTheme = dernierTheme;
     }
 
+    public List<Theme> getThemesConsommés() {
+        return themesConsommés;
+    }
+
+    public void addThemesConsommés(Theme theme) {
+        this.themesConsommés.add(theme);
+    }
 }

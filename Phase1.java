@@ -58,20 +58,8 @@ public class Phase1 implements Phase{
             {
                 Joueur joueurActuel = joueurs.getJoueursSelectionnes().get(nbJoueurActuel);
                 System.out.println("C'est au joueur "+joueurActuel.getNom() +" de répondre à la question suivante : ");
-                if(question instanceof QCM) {
-                    System.out.println("Vous avez le choix entre ces 4 options :");
-                    int i = 1;
-                    for (String reponse : question.getReponse()){
-                        System.out.println("Réponse N° "+i+" : "+reponse);
-                        i++;
-                    }
-                }
-                if(question instanceof RC){
-                    System.out.println("Veuillez rentrer votre réponse sous forme de réponse courte");
-                }
-                if (question instanceof VF){
-                    System.out.println("La réponse est elle vraie ou fausse ? V/F");
-                }
+                System.out.println(question.getQuestion());
+                question.demanderReponse();
                 Scanner scanner = new Scanner(System.in);
                 String reponse = scanner.nextLine();
                 if(reponse.equals(question.getBonneReponse())){
