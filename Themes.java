@@ -10,6 +10,7 @@ public class Themes {
     private List<Theme> themes = new ArrayList<Theme>();
     private List<Theme> themesSelectionnees = new ArrayList<Theme>();
     private List<Theme> themesConsommés = new ArrayList<Theme>();
+    private String themecreateurs;
 
     private static int theme_courant = 0;
 
@@ -130,6 +131,23 @@ public class Themes {
             List<Theme> doublons = new ArrayList<Theme>();
             int i = 0;
             while(i < 6)
+            {
+                int random = (int)(Math.random() * (themes.size()));
+
+                if(!(themes.get(random).getId() == dernierTheme) && !(doublons.contains(themes.get(random))))
+                {
+                    this.themesSelectionnees.add(this.themes.get(random));
+                    doublons.add(this.themes.get(random));
+                    i++;
+                }
+
+            }
+        }
+        if(phase instanceof  Phase3){
+            this.themesSelectionnees.clear();
+            List<Theme> doublons = new ArrayList<Theme>();
+            int i = 0;
+            while(i < 3)
             {
                 int random = (int)(Math.random() * (themes.size()));
 
