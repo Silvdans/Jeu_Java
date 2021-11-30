@@ -18,23 +18,24 @@ public class Main {
             System.out.println("Voulez-vous jouer ou configurer de nouvelles questions ('Jouer'/'Config')");
             choix = scanner.nextLine();
             switch (choix) {
-                case "Jouer":
+                case "Jouer" -> {
                     Phase phase = new Phase1(joueurs, themes);
                     phase.déroulerPhase();
-
                     Phase phase2 = new Phase2(joueurs, themes);
                     phase2.selectionerJoueurs();
                     phase2.déroulerPhase();
+                    Phase phase3 = new Phase3(joueurs, themes);
+                    phase3.selectionerJoueurs();
+                    phase3.déroulerPhase();
                     run = false;
+                }
 
-                    //        for (int i=0; i < 20;i++)
-                    //        {
-                    //            System.out.println(themes.getThemes().get(themes.selectionTheme()).getNom());
-                    //        }
+                //        for (int i=0; i < 20;i++)
+                //        {
+                //            System.out.println(themes.getThemes().get(themes.selectionTheme()).getNom());
+                //        }
 
-                    break;
-
-                case "Config":
+                case "Config" -> {
                     boolean ajoutQuestion = true;
                     while (ajoutQuestion) {
                         System.out.println("Voulez vous ajouter une question ? O/N");
@@ -47,9 +48,8 @@ public class Main {
                             ajoutQuestion = false;
                         }
                     }
-                    break;
-                default:
-                    throw new IllegalStateException("La valeur entrée n'est pas correcte :" + choix);
+                }
+                default -> throw new IllegalStateException("La valeur entrée n'est pas correcte :" + choix);
             }
         }
 
