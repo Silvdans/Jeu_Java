@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Phase2 implements Phase{
     private Joueurs joueurs;
     private Themes themes;
-    private Theme themeactuel;
     public Phase2(Joueurs joueurs,Themes themes){
         this.joueurs = joueurs;
         this.themes = themes;

@@ -53,7 +53,7 @@ public class Joueurs {
         }
     }
     public void resetEtats(){
-        for (Joueur joueur : this.joueursSelectionnes){
+        for (Joueur joueur : joueursSelectionnes){
             joueur.setEtat(EtatJoueur.SELECTIONNE);
         }
     }
