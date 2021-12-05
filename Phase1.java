@@ -24,9 +24,10 @@ public class Phase1 implements Phase{
         themes.setThemesSelectionnees(this);
         boolean touslesjoueursontjoues;
         int nbJoueurActuel = 0;
+        themes.getThemeByName(themes.getCurrentTheme().getNom()).chooseQuestions(this);
         while(!joueurs.verifGagnants(3))
         {
-            Question question = themes.getThemeByName(themes.getCurrentTheme().getNom()).selectionQuestion(this);
+            Question question = themes.getThemeByName(themes.getCurrentTheme().getNom()).selectionQuestion();
             themes.setDernierTheme(themes.getCurrentTheme().getId());
             touslesjoueursontjoues = false;
             if(question == null)

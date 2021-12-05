@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -37,6 +38,7 @@ public class Joueurs {
     public void selectionnerJoueurGagnantsRandom(int nbJoueurGagnantsMax){
         int nbJoueursGagnants = 0;
         List<Joueur> joueursNonGagnants = new ArrayList<Joueur>();
+        System.out.println("Il n'y a plus de questions dans un des thèmes, les joueurs gagnants sont séléctionnés aléatoirement");
         for(Joueur joueur : this.getJoueursSelectionnes()){
             if(joueur.getEtat().equals(EtatJoueur.GAGNANT)){
                 nbJoueursGagnants += 1;
@@ -46,10 +48,31 @@ public class Joueurs {
                 joueursNonGagnants.add(joueur);
             }
         }
+
         while (nbJoueursGagnants < nbJoueurGagnantsMax){
-            int random = (int)(Math.random() * (joueursNonGagnants.size()));
-            joueursNonGagnants.get(random).setEtat(EtatJoueur.GAGNANT);
-            nbJoueursGagnants +=1;
+
+            int maxScore = 0;
+            for (Joueur joueur : joueursNonGagnants)
+            {
+                if(joueur.getScore()>maxScore){
+                    maxScore = joueur.getScore();
+                }
+            }
+            List<Joueur> listejoueursMemeScore = new ArrayList<Joueur>();
+            for (Joueur joueur :joueursNonGagnants){
+                if(maxScore == joueur.getScore()){
+                    listejoueursMemeScore.add(joueur);
+                }
+            }
+            if(listejoueursMemeScore.size() > 1){
+                int random = (int)(Math.random() * (listejoueursMemeScore.size()));
+                listejoueursMemeScore.get(random).setEtat(EtatJoueur.GAGNANT);
+                nbJoueursGagnants +=1;
+            }
+            else{
+                listejoueursMemeScore.get(0).setEtat(EtatJoueur.GAGNANT);
+                nbJoueursGagnants +=1;
+            }
         }
     }
     public void resetEtats(){
@@ -57,6 +80,7 @@ public class Joueurs {
             joueur.setEtat(EtatJoueur.SELECTIONNE);
         }
     }
+
     public void afficherJoueursGagnants(){
         for(Joueur joueur : joueursSelectionnes){
             if(joueur.getEtat().equals(EtatJoueur.GAGNANT)){
@@ -66,7 +90,6 @@ public class Joueurs {
     }
     public void selectionJoueursParticipants(){
         Random randomiser = new Random();
-        List<Integer> doublons = new ArrayList<Integer>();
         int i = 0;
         while(i < 4) {
             int indexJoueur = randomiser.nextInt(joueurs.size());
