@@ -10,6 +10,7 @@ public class Main {
         //Initialisation des Class et variable
 	    Joueurs joueurs = new Joueurs();
         Themes themes = new Themes();
+        ParseCSV parseCSV = new ParseCSV(themes);
         String choix;
         Scanner scanner = new Scanner(System.in);
 
@@ -19,6 +20,7 @@ public class Main {
             choix = scanner.nextLine();
             switch (choix) {
                 case "Jouer" -> {
+                    parseCSV.parse();
                     Phase phase = new Phase1(joueurs, themes);
                     phase.déroulerPhase();
                     Phase phase2 = new Phase2(joueurs, themes);
