@@ -38,7 +38,8 @@ public class Phase2 implements Phase{
             while(touslesjoueursontpasjoues){
 
                 Joueur joueurActuel = joueurs.getJoueursSelectionnes().get(nbJoueurActuel);
-                Question question = joueurActuel.getThemesChoisis().get(0).selectionQuestion(this);
+                joueurActuel.getThemesChoisis().get(0).chooseQuestions(this);
+                Question question = joueurActuel.getThemesChoisis().get(0).selectionQuestion();
                 if(question == null)
                 {
                     joueurs.selectionnerJoueurGagnantsRandom(2);

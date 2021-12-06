@@ -1,7 +1,6 @@
 package com.company;
 
-import java.io.File;
-import java.lang.reflect.InaccessibleObjectException;
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,9 +8,11 @@ import java.util.Scanner;
 public class Theme {
 
     private List<Question> questions = new ArrayList<Question>();
+    private List<Question> questionsCourantes = new ArrayList<Question>();
     private String nom;
     private static int id_to_associate=100;
     private int id;
+    private int indexInList;
     public Theme(String nom){
         this.nom = nom;
         this.id = Theme.id_to_associate;
@@ -21,7 +22,15 @@ public class Theme {
 
     }
 
-    public Question selectionQuestion(Phase phase){
+    public Question selectionQuestion(){
+        if(this.questionsCourantes.isEmpty()){
+            return null;
+        }
+        Question question = this.questionsCourantes.get(0);
+        this.questionsCourantes.remove(0);
+        return question;
+    }
+    public void chooseQuestions(Phase phase){
         String difficultee = null;
         if(phase instanceof Phase1)
         {
@@ -35,25 +44,27 @@ public class Theme {
         {
             difficultee = "difficile";
         }
-        List<Question> questionsCourantes = new ArrayList<Question>();
+
+        Random randomiser = new Random();
+        int valueRandom = randomiser.nextInt(6) + 5;
+        int i = 0;
+        List<Question> questionsAutorisées = new ArrayList<Question>();
+
         for (Question question : this.questions){
             if (question.getDifficultée().equals(difficultee) && question.getEtat().equals(EtatQuestion.EN_ATTENTE)){
-                questionsCourantes.add(question);
+                questionsAutorisées.add(question);
             }
         }
-        if(questionsCourantes.size() == 0)
-        {
-            return null;
+        if(questionsAutorisées.size() >= valueRandom){
+            for (int j = 0; j < valueRandom;j++){
+                int random = (int)(Math.random() * (questionsAutorisées.size()));
+                this.questionsCourantes.add(questionsAutorisées.get(random));
+                questionsAutorisées.remove(random);
+            }
         }
         else{
-            int random = (int)(Math.random() * (questionsCourantes.size()));
-            Question question = questionsCourantes.get(random);
-            question.setEtat(EtatQuestion.UTILISEE);
-            return question;
+            System.out.println("Il n'y a pas assez de questions");
         }
-
-
-
     }
     public void ajoutQuestion() {
         //Création fichier question
@@ -118,7 +129,16 @@ public class Theme {
         this.questions.add(question);
     }
 
+
     public int getId() {
         return id;
+    }
+
+    public int getIndexInList() {
+        return indexInList;
+    }
+
+    public void setIndexInList(int indexInList) {
+        this.indexInList = indexInList;
     }
 }
